@@ -86,10 +86,10 @@ with tab4:
     col1, col2, col3 = st.columns(3)
     with col1:
         st.write("Columna 1")
-        st.image("https://via.placeholder.com/150", caption="Placeholder image")
+        st.image("https://i.gifer.com/origin/92/92fee742dc7a3b5ae117ca8ca4bc5c07_w200.gif", caption="Placeholder image")
     with col2:
         st.write("Columna 2")
-        st.image("https://via.placeholder.com/150", caption="Placeholder image")
+        st.image("https://i.gifer.com/origin/92/92fee742dc7a3b5ae117ca8ca4bc5c07_w200.gif", caption="Placeholder image")
     with col3:
         st.write("Columna 3")
-        st.image("https://via.placeholder.com/150", caption="Placeholder image")
+        st.image("https://i.gifer.com/origin/92/92fee742dc7a3b5ae117ca8ca4bc5c07_w200.gif", caption="Placeholder image")
