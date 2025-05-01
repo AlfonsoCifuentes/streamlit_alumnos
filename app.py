@@ -92,9 +92,29 @@ if page == "📊 Resumen":
     """)
 
 elif page == "📋 Datos":
-    df = pd.read_csv('titanic_limpio.csv')
-    st.markdown("### 📋 Dataset del Titanic")
-    st.dataframe(df.style.highlight_max(axis=0))
+    try:
+        df = pd.read_csv('titanic_limpio.csv')
+        st.markdown("### 📋 Dataset del Titanic")
+        
+        # Mostrar info básica del dataset
+        st.markdown("#### 📊 Información del Dataset")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.write(f"**Número de filas:** {df.shape[0]}")
+            st.write(f"**Número de columnas:** {df.shape[1]}")
+        with col2:
+            st.write(f"**Columnas:** {', '.join(df.columns.tolist())}")
+        
+        # Mostrar los datos sin estilo
+        st.markdown("#### 🔍 Datos")
+        st.dataframe(df)
+        
+        # Estadísticas descriptivas para columnas numéricas
+        st.markdown("#### 📈 Estadísticas Descriptivas")
+        st.dataframe(df.describe())
+        
+    except Exception as e:
+        st.error(f"Error al cargar los datos: {str(e)}")
 
 elif page == "📈 Gráficos":
     df = pd.read_csv('titanic_limpio.csv')
@@ -128,3 +148,56 @@ elif page == "📑 Análisis":
     with col2:
         st.info("💡 Los niños tuvieron prioridad en el rescate")
         st.info("💡 La mayoría de las víctimas fueron hombres")
+
+        # Añadir un botón para descargar el dataset limpio
+        st.markdown("---")
+        st.markdown("### 📥 Descargar Dataset Limpio")
+        st.download_button(
+            label="Descargar CSV",
+            data=df.to_csv(index=False).encode('utf-8'),
+            file_name='titanic_limpio.csv',
+            mime='text/csv',
+            key='download-csv'
+        )
+        st.markdown("### 📜 Referencias")
+        st.markdown("- [Kaggle Titanic Dataset](https://www.kaggle.com/c/titanic/data)")
+        st.markdown("- [Análisis de Datos con Python](https://www.datacamp.com/courses/intro-to-python-for-data-science)")
+        st.markdown("- [Visualización de Datos con Plotly](https://plotly.com/python/)")
+        st.markdown("- [Streamlit Documentation](https://docs.streamlit.io/)")
+        st.markdown("- [Pandas Documentation](https://pandas.pydata.org/docs/)")
+        st.markdown("- [Plotly Express Documentation](https://plotly.com/python/plotly-express/)")
+        st.markdown("- [Python for Data Analysis](https://www.oreilly.com/library/view/python-for-data/9781449323592/)")
+        st.markdown("- [Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/)")
+        st.markdown("- [Data Science with Python](https://www.coursera.org/specializations/data-science-python)")
+        st.markdown("- [Data Science with R](https://www.coursera.org/specializations/data-science-r)")
+        st.markdown("- [Data Science with SQL](https://www.coursera.org/specializations/data-science-sql)")
+        st.markdown("- [Data Science with Machine Learning](https://www.coursera.org/specializations/data-science-machine-learning)")
+        st.markdown("- [Data Science with Deep Learning](https://www.coursera.org/specializations/data-science-deep-learning)")
+        st.markdown("- [Data Science with Big Data](https://www.coursera.org/specializations/data-science-big-data)")
+        st.markdown("- [Data Science with Cloud Computing](https://www.coursera.org/specializations/data-science-cloud-computing)")
+        st.markdown("- [Data Science with Data Visualization](https://www.coursera.org/specializations/data-science-data-visualization)")
+        st.markdown("- [Data Science with Data Mining](https://www.coursera.org/specializations/data-science-data-mining)")
+        st.markdown("- [Data Science with Data Analysis](https://www.coursera.org/specializations/data-science-data-analysis)")
+        st.markdown("- [Data Science with Data Engineering](https://www.coursera.org/specializations/data-science-data-engineering)")
+        st.markdown("- [Data Science with Data Management](https://www.coursera.org/specializations/data-science-data-management)")
+        st.markdown("- [Data Science with Data Governance](https://www.coursera.org/specializations/data-science-data-governance)")
+        st.markdown("- [Data Science with Data Ethics](https://www.coursera.org/specializations/data-science-data-ethics)")
+        st.markdown("- [Data Science with Data Privacy](https://www.coursera.org/specializations/data-science-data-privacy)")
+        st.markdown("- [Data Science with Data Security](https://www.coursera.org/specializations/data-science-data-security)")
+        st.markdown("- [Data Science with Data Quality](https://www.coursera.org/specializations/data-science-data-quality)")
+        st.markdown("- [Data Science with Data Integration](https://www.coursera.org/specializations/data-science-data-integration)")
+        st.markdown("- [Data Science with Data Architecture](https://www.coursera.org/specializations/data-science-data-architecture)")
+        st.markdown("- [Data Science with Data Warehousing](https://www.coursera.org/specializations/data-science-data-warehousing)")
+        st.markdown("- [Data Science with Data Lakes](https://www.coursera.org/specializations/data-science-data-lakes)")
+        st.markdown("- [Data Science with Data Pipelines](https://www.coursera.org/specializations/data-science-data-pipelines)")
+        st.markdown("- [Data Science with Data APIs](https://www.coursera.org/specializations/data-science-data-apis)")
+        st.markdown("- [Data Science with Data Streams](https://www.coursera.org/specializations/data-science-data-streams)")
+        st.markdown("- [Data Science with Data Lakes](https://www.coursera.org/specializations/data-science-data-lakes)")
+        st.markdown("- [Data Science with Data Mesh](https://www.coursera.org/specializations/data-science-data-mesh)")
+        st.markdown("- [Data Science with Data Fabric](https://www.coursera.org/specializations/data-science-data-fabric)")
+        st.markdown("- [Data Science with DataOps](https://www.coursera.org/specializations/data-science-dataops)")
+        st.markdown("- [Data Science with MLOps](https://www.coursera.org/specializations/data-science-mlops)")
+        st.markdown("- [Data Science with AIOps](https://www.coursera.org/specializations/data-science-aiops)")
+        st.markdown("- [Data Science with DevOps](https://www.coursera.org/specializations/data-science-devops)")
+        st.markdown("- [Data Science with NoSQL](https://www.coursera.org/specializations/data-science-nosql)")
+        st.markdown("- [Data Science with SQL](https://www.coursera.org/specializations/data-science-sql)")
