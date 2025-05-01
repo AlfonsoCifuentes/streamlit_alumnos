@@ -3,7 +3,14 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# Custom CSS
+# Setup de la app (DEBE IR PRIMERO)
+st.set_page_config(
+    page_title="Data Analysis Dashboard",
+    layout="wide",
+    page_icon="📊"
+)
+
+# Custom CSS (ahora va después de set_page_config)
 st.markdown("""
     <style>
     .main {
@@ -31,13 +38,6 @@ st.markdown("""
     }
     </style>
     """, unsafe_allow_html=True)
-
-# Setup de la app
-st.set_page_config(
-    page_title="Data Analysis Dashboard",
-    layout="wide",
-    page_icon="📊"
-)
 
 # TITULO con HTML personalizado
 st.markdown("<h1 style='text-align: center; color: #1E88E5;'>Data Analysis Dashboard</h1>", unsafe_allow_html=True)
