@@ -21,11 +21,7 @@ st.write("Hello, world!")
 #MARKDOWN
 st.markdown("Hello, **world!**")
 
-#Importando la libreria pandas para leer el csv
-df = pd.read_csv('titanic_limpio.csv')
 
-#Mostrando el dataframe en la app con streamlit
-st.dataframe(df)
 
 st.sidebar.title("Sidebar")
 st.sidebar.subheader("Sidebar subheader")
@@ -58,25 +54,20 @@ with tab1:
     st.metric(label="Temperature", value="70 °F", delta="1.2 °F")
     st.progress(50)
     st.spinner("Loading...")
-    st.map()
     st.image("https://via.placeholder.com/150", caption="Placeholder image")
     st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
-    st.file_uploader("Upload a file", type=["csv", "txt"])
-    st.download_button("Download a file", data="Hello, world!", file_name="hello.txt")
+
 
 with tab2:
     st.title("Datos")
     st.write("Aquí puedes ver los datos")
+    #Importando la libreria pandas para leer el csv
+    df = pd.read_csv('titanic_limpio.csv')
+
+    #Mostrando el dataframe en la app con streamlit
     st.dataframe(df)
-    st.table(df)
-    st.metric(label="Temperature", value="70 °F", delta="1.2 °F")
-    st.progress(50)
-    st.spinner("Loading...")
-    st.balloons()
-    st.snow()
-    st.map()
-    st.file_uploader("Upload a file", type=["csv", "txt"])
-    st.download_button("Download a file", data="Hello, world!", file_name="hello.txt")
+
+
 
 with tab3:
     st.title("Gráficos")
@@ -87,3 +78,4 @@ with tab3:
     st.plotly_chart(fig)
     fig = px.box(df, x="Age", y="Fare", color="Survived")
     st.plotly_chart(fig)
+    st.map()
