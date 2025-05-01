@@ -51,7 +51,7 @@ st.download_button("Download a file", data="Hello, world!", file_name="hello.txt
 
 
 #Importando la libreria pandas para leer el csv
-df = pd.read_csv(r'E:\Proyectos\VisualStudio\Upgrade_Data_AI\streamlit_alumnos\titanic_limpio.csv')
+df = pd.read_csv('titanic_limpio.csv')
 
 #Mostrando el dataframe en la app con streamlit
 st.dataframe(df)
