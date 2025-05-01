@@ -60,3 +60,38 @@ st.sidebar.title("Sidebar")
 st.sidebar.subheader("Sidebar subheader")
 st.sidebar.write("Hello, world!")
 st.sidebar.markdown("Hello, **world!**")
+
+#Pestañas
+
+tab1, tab2,tab3, tab4 = st.tabs(["Inicio", "Datos", "Gráficos"])
+
+with tab1:
+    st.title("Inicio")
+    st.write("Bienvenido a la app de streamlit")
+    st.image("https://via.placeholder.com/150", caption="Placeholder image")
+    st.video("https://youtu.be/AOqY6UdJFvo?si=sM1H9E_-6aN-W311")
+    st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
+
+with tab2:
+    st.title("Datos")
+    st.write("Aquí puedes ver los datos")
+    st.dataframe(df)
+    st.table(df)
+    st.metric(label="Temperature", value="70 °F", delta="1.2 °F")
+    st.progress(50)
+    st.spinner("Loading...")
+    st.balloons()
+    st.snow()
+    st.map()
+    st.file_uploader("Upload a file", type=["csv", "txt"])
+    st.download_button("Download a file", data="Hello, world!", file_name="hello.txt")
+
+with tab3:
+    st.title("Gráficos")
+    st.write("Aquí puedes ver los gráficos")
+    fig = px.scatter(df, x="Age", y="Fare", color="Survived")
+    st.plotly_chart(fig)
+    fig = px.histogram(df, x="Age", color="Survived")
+    st.plotly_chart(fig)
+    fig = px.box(df, x="Age", y="Fare", color="Survived")
+    st.plotly_chart(fig)
