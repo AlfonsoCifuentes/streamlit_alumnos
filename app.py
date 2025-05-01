@@ -55,3 +55,8 @@ df = pd.read_csv(r'E:\Proyectos\VisualStudio\Upgrade_Data_AI\streamlit_alumnos\t
 
 #Mostrando el dataframe en la app con streamlit
 st.dataframe(df)
+
+st.sidebar.title("Sidebar")
+st.sidebar.subheader("Sidebar subheader")
+st.sidebar.write("Hello, world!")
+st.sidebar.markdown("Hello, **world!**")
