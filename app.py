@@ -152,19 +152,6 @@ elif page == "📑 Análisis":
         with col2:
             st.info("💡 Los niños tuvieron prioridad en el rescate")
             st.info("💡 La mayoría de las víctimas fueron hombres")
-
-            # Añadir un botón para descargar el dataset limpio
-            st.markdown("---")
-            st.markdown("### 📥 Descargar Dataset Limpio")
-            st.download_button(
-                label="Descargar CSV",
-                data=df.to_csv(index=False).encode('utf-8'),
-                file_name='titanic_limpio.csv',
-                mime='text/csv',
-                key='download-csv'
-            )
-            
-        # Resto del código de referencias...
         
     except Exception as e:
         st.error(f"Error al cargar los datos: {str(e)}")
