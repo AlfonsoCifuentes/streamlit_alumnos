@@ -83,3 +83,13 @@ with tab3:
 with tab4:
     st.title("Columnas")
     st.write("Aquí puedes ver las columnas")
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.write("Columna 1")
+        st.image("https://via.placeholder.com/150", caption="Placeholder image")
+    with col2:
+        st.write("Columna 2")
+        st.image("https://via.placeholder.com/150", caption="Placeholder image")
+    with col3:
+        st.write("Columna 3")
+        st.image("https://via.placeholder.com/150", caption="Placeholder image")
