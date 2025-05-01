@@ -30,7 +30,7 @@ st.sidebar.markdown("Hello, **world!**")
 
 #Pestañas
 
-tab1, tab2,tab3 = st.tabs(["Inicio", "Datos", "Gráficos"])
+tab1, tab2,tab3, tab4 = st.tabs(["Inicio", "Datos", "Gráficos", "Columnas"])
 
 with tab1:
     st.title("Inicio")
@@ -79,3 +79,17 @@ with tab3:
     fig = px.box(df, x="Age", y="Fare", color="Survived")
     st.plotly_chart(fig)
     st.map()
+
+with tab4:
+    st.title("Columnas")
+    st.write("Aquí puedes ver las columnas")
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.write("Columna 1")
+        st.image("https://via.placeholder.com/150", caption="Placeholder image")
+    with col2:
+        st.write("Columna 2")
+        st.image("https://via.placeholder.com/150", caption="Placeholder image")
+    with col3:
+        st.write("Columna 3")
+        st.image("https://via.placeholder.com/150", caption="Placeholder image")
