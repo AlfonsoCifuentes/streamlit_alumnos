@@ -34,7 +34,7 @@ st.sidebar.markdown("Hello, **world!**")
 
 #Pestañas
 
-tab1, tab2,tab3, tab4 = st.tabs(["Inicio", "Datos", "Gráficos"])
+tab1, tab2,tab3 = st.tabs(["Inicio", "Datos", "Gráficos"])
 
 with tab1:
     st.title("Inicio")
