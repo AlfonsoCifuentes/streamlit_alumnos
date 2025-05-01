@@ -76,8 +76,14 @@ with st.sidebar:
 # Contenido principal
 st.markdown("<h1>🚢 Análisis del Titanic</h1>", unsafe_allow_html=True)
 
-# Contenido según la selección
+# Imagen del Titanic en la página de inicio
 if page == "📊 Resumen":
+    st.image(
+        "https://upload.wikimedia.org/wikipedia/commons/f/fd/RMS_Titanic_3.jpg",
+        caption="RMS Titanic (Fuente: Wikimedia Commons)",
+        use_column_width=True
+    )
+
     col1, col2, col3 = st.columns(3)
     with col1:
         st.metric("Total Pasajeros", "891", "100%")
