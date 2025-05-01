@@ -5,122 +5,126 @@ import plotly.express as px
 
 # Setup de la app (DEBE IR PRIMERO)
 st.set_page_config(
-    page_title="Data Analysis Dashboard",
+    page_title="Titanic Analysis",
     layout="wide",
-    page_icon="📊"
+    page_icon="🚢"
 )
 
 # Custom CSS (ahora va después de set_page_config)
 st.markdown("""
     <style>
     .main {
-        background-color: #f5f5f5;
+        background-color: #fafafa;
     }
-    .stTitle {
-        color: #1E88E5;
+    h1 {
+        color: white;
         font-family: 'Helvetica Neue', sans-serif;
         font-weight: 700;
+        text-align: center;
+        padding: 1.5rem 0;
+        background: linear-gradient(90deg, #1a237e 0%, #3949ab 100%);
+        border-radius: 10px;
+        margin-bottom: 2rem;
     }
-    .stHeader {
-        color: #2E7D32;
+    h2 {
+        color: #283593;
         font-family: 'Helvetica Neue', sans-serif;
+        border-bottom: 2px solid #3949ab;
+        padding-bottom: 0.5rem;
     }
-    .sidebar .sidebar-content {
-        background-color: #e0e0e0;
+    .stTab {
+        background-color: #e8eaf6;
+        border-radius: 5px;
+        padding: 1rem;
     }
     .stButton>button {
-        background-color: #1E88E5;
+        background-color: #3949ab;
         color: white;
         border-radius: 5px;
     }
-    .stTextInput>div>div>input {
-        border-radius: 5px;
+    .sidebar .sidebar-content {
+        background-color: #f5f5f5;
+        border-radius: 10px;
+    }
+    div[data-testid="stSidebarNav"] {
+        background-color: rgba(57, 73, 171, 0.1);
+        padding: 1rem;
+        border-radius: 10px;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# TITULO con HTML personalizado
-st.markdown("<h1 style='text-align: center; color: #1E88E5;'>Data Analysis Dashboard</h1>", unsafe_allow_html=True)
+# Sidebar mejorado
+with st.sidebar:
+    st.markdown("<h2 style='text-align: center; color: #1a237e;'>🚢 Navegación</h2>", unsafe_allow_html=True)
+    
+    page = st.radio(
+        "",
+        ["📊 Resumen", "📋 Datos", "📈 Gráficos", "📑 Análisis"],
+        label_visibility="collapsed"
+    )
+    
+    st.markdown("---")
+    st.markdown("### 📌 Filtros")
+    
+    # Añadir filtros útiles
+    if 'df' in locals():
+        survived = st.checkbox("Mostrar solo supervivientes")
+        class_filter = st.multiselect("Clase", ["1ra", "2da", "3ra"])
+        age_range = st.slider("Rango de edad", 0, 100, (0, 100))
 
-# ENCABEZADOS
-st.markdown("<h2 style='color: #2E7D32;'>Welcome to the Dashboard</h2>", unsafe_allow_html=True)
-st.markdown("<h3 style='color: #424242;'>Explore your data</h3>", unsafe_allow_html=True)
+# Contenido principal
+st.markdown("<h1>🚢 Análisis del Titanic</h1>", unsafe_allow_html=True)
 
-# TEXTO NORMAL con estilo
-st.markdown("<p style='font-size: 18px; color: #424242;'>Welcome to our interactive data analysis platform!</p>", unsafe_allow_html=True)
-
-# Sidebar con estilo
-st.sidebar.markdown("""
-    <div style='background-color: #1E88E5; padding: 10px; border-radius: 5px;'>
-        <h2 style='color: white; text-align: center;'>Dashboard Controls</h2>
-    </div>
-    """, unsafe_allow_html=True)
-st.sidebar.markdown("<h3 style='color: #2E7D32;'>Settings</h3>", unsafe_allow_html=True)
-st.sidebar.markdown("<p style='color: #424242;'>Adjust your parameters here</p>", unsafe_allow_html=True)
-st.sidebar.markdown("Hello, **world!**")
-
-#Pestañas
-
-tab1, tab2,tab3, tab4 = st.tabs(["Inicio", "Datos", "Gráficos", "Columnas"])
-
-with tab1:
-    st.title("Inicio")
-    st.write("Bienvenido a la app de streamlit")
-    #LATEX
-    st.latex(r'''a^2 + b^2 = c^2''')
-
-    #code
-    st.code('print("Hello, world!")', language='python')
-
-    #iNFORMACIÓN, ADVERTENCIAS Y ERRORES
-    st.info("This is an info message")
-    st.warning("This is a warning message")
-    st.error("This is an error message")
-    st.success("This is a success message")
-    st.exception("This is an exception message")
-    st.help("This is a help message")
-    st.json({"key": "value"})
-    st.dataframe({"key": "value"})
-    st.table({"key": "value"})
-    st.metric(label="Temperature", value="70 °F", delta="1.2 °F")
-    st.progress(50)
-    st.spinner("Loading...")
-    st.image("https://via.placeholder.com/150", caption="Placeholder image")
-    st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
-
-
-with tab2:
-    st.title("Datos")
-    st.write("Aquí puedes ver los datos")
-    #Importando la libreria pandas para leer el csv
-    df = pd.read_csv('titanic_limpio.csv')
-
-    #Mostrando el dataframe en la app con streamlit
-    st.dataframe(df)
-
-
-
-with tab3:
-    st.title("Gráficos")
-    st.write("Aquí puedes ver los gráficos")
-    fig = px.scatter(df, x="Age", y="Fare", color="Survived")
-    st.plotly_chart(fig)
-    fig = px.histogram(df, x="Age", color="Survived")
-    st.plotly_chart(fig)
-    fig = px.box(df, x="Age", y="Fare", color="Survived")
-    st.plotly_chart(fig)
-    st.map()
-
-with tab4:
-    st.title("Columnas")
-    st.write("Aquí puedes ver las columnas")
+# Contenido según la selección
+if page == "📊 Resumen":
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.write("Columna 1")
-        st.image("https://i.gifer.com/origin/92/92fee742dc7a3b5ae117ca8ca4bc5c07_w200.gif", caption="Placeholder image")
+        st.metric("Total Pasajeros", "891", "100%")
     with col2:
-        st.write("Columna 2")
-        st.image("https://i.pinimg.com/originals/88/81/d1/8881d18649eb272c6d00f345f7064b44.gif", caption="Placeholder image")
+        st.metric("Supervivientes", "342", "+38.4%")
     with col3:
-        st.write("Columna 3")
-        st.image("https://giffiles.alphacoders.com/128/12839.gif", caption="Placeholder image")
+        st.metric("Edad Media", "29.7 años")
+        
+    st.markdown("""
+    ### 🎯 Objetivo del Análisis
+    Explorar los patrones de supervivencia en el desastre del Titanic.
+    """)
+
+elif page == "📋 Datos":
+    df = pd.read_csv('titanic_limpio.csv')
+    st.markdown("### 📋 Dataset del Titanic")
+    st.dataframe(df.style.highlight_max(axis=0))
+
+elif page == "📈 Gráficos":
+    df = pd.read_csv('titanic_limpio.csv')
+    st.markdown("### 📈 Visualización de Datos")
+    
+    # Gráficos mejorados
+    tab1, tab2, tab3 = st.tabs(["Supervivencia", "Edad", "Tarifa"])
+    
+    with tab1:
+        fig = px.pie(df, names='Survived', title='Tasa de Supervivencia')
+        st.plotly_chart(fig, use_container_width=True)
+    
+    with tab2:
+        fig = px.histogram(df, x="Age", color="Survived", 
+                          title='Distribución de Edad por Supervivencia')
+        st.plotly_chart(fig, use_container_width=True)
+    
+    with tab3:
+        fig = px.box(df, x="Pclass", y="Fare", color="Survived",
+                    title='Distribución de Tarifas por Clase')
+        st.plotly_chart(fig, use_container_width=True)
+
+elif page == "📑 Análisis":
+    st.markdown("### 📑 Conclusiones Principales")
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.info("💡 La tasa de supervivencia fue mayor en mujeres")
+        st.info("💡 Los pasajeros de primera clase tuvieron mejor chance")
+    
+    with col2:
+        st.info("💡 Los niños tuvieron prioridad en el rescate")
+        st.info("💡 La mayoría de las víctimas fueron hombres")
