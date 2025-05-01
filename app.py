@@ -56,7 +56,11 @@ st.markdown("""
 
 # Sidebar mejorado
 with st.sidebar:
-    st.markdown("<h2 style='text-align: center; color: #1a237e;'>🚢 Navegación</h2>", unsafe_allow_html=True)
+    st.markdown(
+        "<h2 style='text-align: center; color: #fff; background: linear-gradient(90deg, #3949ab 0%, #1a237e 100%); "
+        "padding: 0.7rem 0; border-radius: 8px; margin-bottom: 1.5rem;'>🚢 Navegación</h2>",
+        unsafe_allow_html=True
+    )
     
     page = st.radio(
         "",
