@@ -78,13 +78,21 @@ st.markdown("<h1>🚢 Análisis del Titanic</h1>", unsafe_allow_html=True)
 
 # Imagen del Titanic en la página de inicio
 if page == "📊 Resumen":
-    # Mostrar la imagen centrada y al 50% del ancho usando columnas vacías
+    # Mostrar la imagen centrada y al 50% del ancho usando HTML para padding
     left, center, right = st.columns([1,2,1])
     with center:
-        st.image(
-            "https://upload.wikimedia.org/wikipedia/commons/f/fd/RMS_Titanic_3.jpg",
-            caption="RMS Titanic (Fuente: Wikimedia Commons)",
-            use_container_width=True,
+        st.markdown(
+            """
+            <div style="padding:3rem 0;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/RMS_Titanic_3.jpg"
+                     alt="RMS Titanic"
+                     style="display:block; margin-left:auto; margin-right:auto; width:50%;">
+                <div style="text-align:center; color: #666; font-size: 0.9rem;">
+                    RMS Titanic (Fuente: Wikimedia Commons)
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
         )
 
     col1, col2, col3 = st.columns(3)
