@@ -3,29 +3,60 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-#Setup de la app
-#De layout podemos usar wide or centered
-st.set_page_config(page_title="My streamlit app", layout="wide", page_icon=":eggplant:")
+# Custom CSS
+st.markdown("""
+    <style>
+    .main {
+        background-color: #f5f5f5;
+    }
+    .stTitle {
+        color: #1E88E5;
+        font-family: 'Helvetica Neue', sans-serif;
+        font-weight: 700;
+    }
+    .stHeader {
+        color: #2E7D32;
+        font-family: 'Helvetica Neue', sans-serif;
+    }
+    .sidebar .sidebar-content {
+        background-color: #e0e0e0;
+    }
+    .stButton>button {
+        background-color: #1E88E5;
+        color: white;
+        border-radius: 5px;
+    }
+    .stTextInput>div>div>input {
+        border-radius: 5px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
-#TITULO
-st.title("My streamlit app")
+# Setup de la app
+st.set_page_config(
+    page_title="Data Analysis Dashboard",
+    layout="wide",
+    page_icon="📊"
+)
 
+# TITULO con HTML personalizado
+st.markdown("<h1 style='text-align: center; color: #1E88E5;'>Data Analysis Dashboard</h1>", unsafe_allow_html=True)
 
-#ENCABEZADOS
-st.header("Header")
-st.subheader("Subheader")
+# ENCABEZADOS
+st.markdown("<h2 style='color: #2E7D32;'>Welcome to the Dashboard</h2>", unsafe_allow_html=True)
+st.markdown("<h3 style='color: #424242;'>Explore your data</h3>", unsafe_allow_html=True)
 
-#TEXTO NORMAL
-st.write("Hello, world!")
+# TEXTO NORMAL con estilo
+st.markdown("<p style='font-size: 18px; color: #424242;'>Welcome to our interactive data analysis platform!</p>", unsafe_allow_html=True)
 
-#MARKDOWN
-st.markdown("Hello, **world!**")
-
-
-
-st.sidebar.title("Sidebar")
-st.sidebar.subheader("Sidebar subheader")
-st.sidebar.write("Hello, world!")
+# Sidebar con estilo
+st.sidebar.markdown("""
+    <div style='background-color: #1E88E5; padding: 10px; border-radius: 5px;'>
+        <h2 style='color: white; text-align: center;'>Dashboard Controls</h2>
+    </div>
+    """, unsafe_allow_html=True)
+st.sidebar.markdown("<h3 style='color: #2E7D32;'>Settings</h3>", unsafe_allow_html=True)
+st.sidebar.markdown("<p style='color: #424242;'>Adjust your parameters here</p>", unsafe_allow_html=True)
 st.sidebar.markdown("Hello, **world!**")
 
 #Pestañas
@@ -89,7 +120,7 @@ with tab4:
         st.image("https://i.gifer.com/origin/92/92fee742dc7a3b5ae117ca8ca4bc5c07_w200.gif", caption="Placeholder image")
     with col2:
         st.write("Columna 2")
-        st.image("https://i.gifer.com/origin/92/92fee742dc7a3b5ae117ca8ca4bc5c07_w200.gif", caption="Placeholder image")
+        st.image("https://i.pinimg.com/originals/88/81/d1/8881d18649eb272c6d00f345f7064b44.gif", caption="Placeholder image")
     with col3:
         st.write("Columna 3")
-        st.image("https://i.gifer.com/origin/92/92fee742dc7a3b5ae117ca8ca4bc5c07_w200.gif", caption="Placeholder image")
+        st.image("https://giffiles.alphacoders.com/128/12839.gif", caption="Placeholder image")
