@@ -142,7 +142,7 @@ elif page == "📈 Gráficos":
     st.markdown("### 📈 Visualización de Datos")
     
     # Gráficos mejorados
-    tab1, tab2, tab3 = st.tabs(["Supervivencia", "Edad", "Tarifa"])
+    tab1, tab2, tab3, tab4 = st.tabs(["Supervivencia", "Edad", "Tarifa", "Contador"])
     
     with tab1:
         fig = px.pie(df, names='Survived', title='Tasa de Supervivencia')
@@ -157,6 +157,32 @@ elif page == "📈 Gráficos":
         fig = px.box(df, x="Pclass", y="Fare", color="Survived",
                     title='Distribución de Tarifas por Clase')
         st.plotly_chart(fig, use_container_width=True)
+
+    with tab4:
+        if 'contador' not in st.session_state:
+            st.session_state.contador = 0
+    def incrementa_contador():
+        st.session_state.contador += 1
+    def decrementa_contador():
+        st.session_state.contador -= 1
+    def reset_contador():
+        st.session_state.contador = 0
+    
+    #interfaz
+    st.title("Contador")
+    st.write("Contador:", st.session_state.contador) #mostrar contador
+
+    #botones para incrementar, decrementar y resetear
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        if st.button("Incrementar"):
+            incrementa_contador()
+    with col2:
+        if st.button("Decrementar"):
+            decrementa_contador()
+    with col3:
+        if st.button("Resetear"):
+            reset_contador()
 
 elif page == "📑 Análisis":
     try:
