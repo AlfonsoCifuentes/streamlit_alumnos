@@ -159,8 +159,13 @@ elif page == "📈 Gráficos":
         st.plotly_chart(fig, use_container_width=True)
 
     with tab4:
+
+    #crear contador en la session state
+    #verificamos si el contador ya existe en la session state, si no lo creamos    
         if 'contador' not in st.session_state:
             st.session_state.contador = 0
+
+    #funciones auxiliares para incrementar, decrementar y resetear el contador        
     def incrementa_contador():
         st.session_state.contador += 1
     def decrementa_contador():
